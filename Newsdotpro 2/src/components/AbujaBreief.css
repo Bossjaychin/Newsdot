@@ -1,0 +1,159 @@
+/* AbujaBreief Styles */
+.abuja-brief {
+    background: var(--color-surface);
+    border-top: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
+}
+
+.abuja-brief__header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: var(--space-8);
+    margin-bottom: var(--space-8);
+    flex-wrap: wrap;
+}
+
+.abuja-brief__eyebrow {
+    color: var(--color-accent);
+    display: block;
+    margin-bottom: var(--space-2);
+}
+
+.abuja-brief__title {
+    margin-bottom: var(--space-2);
+    position: relative;
+    padding-left: var(--space-5);
+}
+
+.abuja-brief__title::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 4px;
+    bottom: 4px;
+    width: 4px;
+    background: var(--color-accent);
+    border-radius: 2px;
+}
+
+.abuja-brief__subtitle {
+    color: var(--color-text-secondary);
+    font-size: 0.9rem;
+    padding-left: var(--space-5);
+}
+
+/* District pills */
+.abuja-brief__districts {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    align-items: flex-start;
+    max-width: 360px;
+}
+
+.abuja-brief__district-pill {
+    padding: 5px 14px;
+    border: 1.5px solid var(--color-border);
+    border-radius: var(--radius-pill);
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--color-text-secondary);
+    background: var(--color-bg);
+    transition: all var(--transition-fast);
+}
+
+.abuja-brief__district-pill:hover {
+    border-color: var(--color-accent);
+    color: var(--color-accent);
+    background: var(--color-accent-light);
+}
+
+/* Items */
+.abuja-brief__items {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+.abuja-brief__item {
+    display: grid;
+    grid-template-columns: 48px 1fr auto;
+    align-items: center;
+    gap: var(--space-5);
+    padding: var(--space-5) 0;
+    border-bottom: 1px solid var(--color-border-light);
+    transition: background var(--transition-fast);
+}
+
+.abuja-brief__item:last-child {
+    border-bottom: none;
+}
+
+.abuja-brief__item:hover {
+    background: var(--color-bg);
+    border-radius: var(--radius-md);
+    padding-left: var(--space-3);
+    padding-right: var(--space-3);
+}
+
+.abuja-brief__number {
+    font-family: var(--font-serif);
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--color-border);
+    line-height: 1;
+}
+
+.abuja-brief__item-meta {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    margin-bottom: var(--space-2);
+}
+
+.abuja-brief__item-headline {
+    display: block;
+    color: var(--color-text);
+    transition: color var(--transition-fast);
+}
+
+.abuja-brief__item-headline:hover {
+    color: var(--color-accent);
+}
+
+.abuja-brief__item-tag {
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: var(--color-muted);
+    background: var(--color-bg);
+    padding: 3px 10px;
+    border-radius: var(--radius-pill);
+    border: 1px solid var(--color-border);
+    white-space: nowrap;
+}
+
+/* Footer */
+.abuja-brief__footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: var(--space-8);
+    flex-wrap: wrap;
+    gap: var(--space-4);
+}
+
+.abuja-brief__update-time {
+    font-size: 0.78rem;
+    color: var(--color-muted);
+}
+
+@media (max-width: 640px) {
+    .abuja-brief__item {
+        grid-template-columns: 36px 1fr;
+    }
+
+    .abuja-brief__item-right {
+        display: none;
+    }
+}

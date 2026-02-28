@@ -1,0 +1,232 @@
+/* Shared Admin Page Styles */
+.admin-page {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-8);
+}
+
+.admin-page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--color-border);
+    padding-bottom: var(--space-4);
+}
+
+.admin-page-title {
+    font-family: var(--font-serif);
+    font-size: 2rem;
+    color: var(--color-charcoal);
+    margin: 0;
+}
+
+.admin-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: 10px var(--space-4);
+    border-radius: var(--radius-sm);
+    font-family: var(--font-sans);
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all var(--transition-fast);
+    border: none;
+}
+
+.admin-btn-primary {
+    background-color: var(--color-accent);
+    color: #fff;
+}
+
+.admin-btn-primary:hover {
+    background-color: #15482d;
+}
+
+.admin-btn-secondary {
+    background-color: var(--color-surface);
+    color: var(--color-text);
+    border: 1px solid var(--color-border);
+}
+
+.admin-btn-secondary:hover {
+    background-color: #e9ecef;
+}
+
+/* Dashboard Specific Styles */
+.admin-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--space-5);
+}
+
+.admin-stat-card {
+    background: #fff;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: var(--space-5);
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.02);
+}
+
+.admin-stat-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: var(--radius-sm);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+}
+
+.admin-stat-details h3 {
+    font-size: 0.9rem;
+    color: var(--color-text-secondary);
+    margin: 0 0 var(--space-1) 0;
+    font-weight: 500;
+}
+
+.admin-stat-details p {
+    font-family: var(--font-serif);
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--color-charcoal);
+    margin: 0;
+    line-height: 1;
+}
+
+/* Tables */
+.admin-section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--space-4);
+}
+
+.admin-section-header h2 {
+    font-family: var(--font-serif);
+    font-size: 1.4rem;
+    margin: 0;
+}
+
+.admin-link {
+    color: var(--color-accent);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.admin-link:hover {
+    text-decoration: underline;
+}
+
+.admin-table-container {
+    background: #fff;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    overflow-x: auto;
+}
+
+.admin-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+.admin-table th,
+.admin-table td {
+    padding: var(--space-4);
+    border-bottom: 1px solid var(--color-border);
+}
+
+.admin-table th {
+    background-color: #fcfcfc;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    color: var(--color-text-light);
+    font-weight: 600;
+    letter-spacing: 0.05em;
+}
+
+.admin-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.admin-table tbody tr:hover {
+    background-color: #f9fafb;
+}
+
+.admin-td-title {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.admin-td-title strong {
+    color: var(--color-charcoal);
+    font-size: 1rem;
+}
+
+.admin-post-author {
+    font-size: 0.8rem;
+    color: var(--color-text-light);
+}
+
+.admin-badge-cat {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.admin-category-politics {
+    background: rgba(231, 76, 60, 0.1);
+    color: #e74c3c;
+}
+
+.admin-category-business {
+    background: rgba(46, 204, 113, 0.1);
+    color: #2ecc71;
+}
+
+.admin-category-tech {
+    background: rgba(52, 152, 219, 0.1);
+    color: #3498db;
+}
+
+.admin-category-society {
+    background: rgba(241, 196, 15, 0.1);
+    color: #f39c12;
+}
+
+.admin-category-investigations {
+    background: rgba(155, 89, 182, 0.1);
+    color: #9b59b6;
+}
+
+.admin-category-opinion {
+    background: rgba(52, 73, 94, 0.1);
+    color: #34495e;
+}
+
+.admin-status-published {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    color: #27ae60;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.admin-status-published::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: #27ae60;
+}

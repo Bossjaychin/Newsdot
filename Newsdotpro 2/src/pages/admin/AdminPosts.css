@@ -1,0 +1,100 @@
+/* Admin Posts Styles */
+.admin-posts-toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--space-4);
+    background: #fff;
+    padding: var(--space-4);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--color-border);
+}
+
+.admin-search-box {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    padding: 8px var(--space-3);
+    border-radius: var(--radius-sm);
+    flex: 1;
+    max-width: 400px;
+}
+
+.admin-search-box i {
+    color: var(--color-text-light);
+}
+
+.admin-search-box input {
+    border: none;
+    background: transparent;
+    outline: none;
+    font-size: 0.95rem;
+    width: 100%;
+    font-family: inherit;
+}
+
+.admin-select {
+    padding: 10px var(--space-3);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    background-color: #fff;
+    font-family: inherit;
+    font-size: 0.95rem;
+    color: var(--color-text);
+    cursor: pointer;
+    min-width: 160px;
+}
+
+.admin-select:focus {
+    outline: none;
+    border-color: var(--color-accent);
+}
+
+.admin-td-actions {
+    display: flex;
+    gap: var(--space-2);
+}
+
+.admin-icon-btn {
+    background: none;
+    border: none;
+    width: 32px;
+    height: 32px;
+    border-radius: var(--radius-sm);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    color: var(--color-text-light);
+}
+
+.admin-icon-btn.edit:hover {
+    background: rgba(52, 152, 219, 0.1);
+    color: #3498db;
+}
+
+.admin-icon-btn.delete:hover {
+    background: rgba(231, 76, 60, 0.1);
+    color: #e74c3c;
+}
+
+.admin-no-results {
+    text-align: center;
+    padding: var(--space-8) !important;
+    color: var(--color-text-light);
+    font-style: italic;
+}
+
+@media (max-width: 768px) {
+    .admin-posts-toolbar {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .admin-search-box {
+        max-width: none;
+    }
+}
