@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom';
 import './ArticleCard.css';
 
+const FALLBACK_IMG = 'https://images.unsplash.com/photo-1585829365295-ab7cd400c167?w=900&q=80';
+
 export default function ArticleCard({ article, size = 'md' }) {
     if (!article) return null;
     const chipClass = `chip chip--${article.tagSlug}`;
@@ -8,7 +10,12 @@ export default function ArticleCard({ article, size = 'md' }) {
     return (
         <article className={`card article-card article-card--${size}`}>
             <Link to={`/article/${article.id}`} className="card__image-wrap">
-                <img src={article.image} alt={article.title} loading="lazy" />
+                <img
+                    src={article.image || FALLBACK_IMG}
+                    alt={article.title}
+                    loading="lazy"
+                    onError={e => { e.target.onerror = null; e.target.src = FALLBACK_IMG; }}
+                />
                 <span className={`${chipClass} card__image-tag`}>{article.tag}</span>
             </Link>
             <div className="card__body">

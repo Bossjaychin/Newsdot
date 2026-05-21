@@ -1,16 +1,48 @@
+import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import TopBar from '../components/TopBar';
 import Footer from '../components/Footer';
 import ArticleCard from '../components/ArticleCard';
-import { getById, articles } from '../data/articles';
+import { getArticleById, getArticlesByCategory } from '../data/articles';
 import './ArticlePage.css';
+
+const FALLBACK_IMG = 'https://images.unsplash.com/photo-1585829365295-ab7cd400c167?w=900&q=80';
 
 export default function ArticlePage() {
     const { id } = useParams();
-    const article = getById(id);
-    const related = articles.filter(a => a.category === article?.category && a.id !== article?.id).slice(0, 3);
+    const [article, setArticle] = useState(null);
+    const [related, setRelated] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [notFound, setNotFound] = useState(false);
 
-    if (!article) {
+    useEffect(() => {
+        setLoading(true);
+        setNotFound(false);
+        getArticleById(id)
+            .then(async (data) => {
+                if (!data) { setNotFound(true); return; }
+                setArticle(data);
+                // Load related articles in same category
+                const rel = await getArticlesByCategory(data.category);
+                setRelated(rel.filter(a => a.id !== id).slice(0, 3));
+            })
+            .catch(console.error)
+            .finally(() => setLoading(false));
+    }, [id]);
+
+    if (loading) {
+        return (
+            <>
+                <TopBar />
+                <main className="article-not-found container">
+                    <p style={{ color: 'var(--color-text-secondary)' }}>Loading article…</p>
+                </main>
+                <Footer />
+            </>
+        );
+    }
+
+    if (notFound || !article) {
         return (
             <>
                 <TopBar />
@@ -46,7 +78,6 @@ export default function ArticlePage() {
                             <h1 className="headline-xl article-page__headline">{article.title}</h1>
                             <p className="body-lg article-page__excerpt">{article.excerpt}</p>
 
-                            {/* Why it matters */}
                             <div className="article-page__why">
                                 <span className="label" style={{ color: 'var(--color-accent)', display: 'block', marginBottom: '4px' }}>Why it matters</span>
                                 <p className="body-md" style={{ color: 'var(--color-text-secondary)' }}>
@@ -55,7 +86,6 @@ export default function ArticlePage() {
                                 </p>
                             </div>
 
-                            {/* Byline */}
                             <div className="article-page__byline">
                                 <div className="hero__avatar" style={{ flexShrink: 0 }}>{article.author?.charAt(0)}</div>
                                 <div>
@@ -68,7 +98,12 @@ export default function ArticlePage() {
 
                     {/* Hero image */}
                     <div className="article-page__image-wrap">
-                        <img src={article.image} alt={article.title} className="article-page__image" />
+                        <img
+                            src={article.image || FALLBACK_IMG}
+                            alt={article.title}
+                            className="article-page__image"
+                            onError={e => { e.target.onerror = null; e.target.src = FALLBACK_IMG; }}
+                        />
                         <p className="article-page__image-caption">Image: Illustrative — NEWSDoT Editorial</p>
                     </div>
 
@@ -80,7 +115,6 @@ export default function ArticlePage() {
                             <p className="body-lg">Full article content is being loaded…</p>
                         )}
 
-                        {/* Verified Sources Box */}
                         {article.verified && (
                             <div className="article-page__sources">
                                 <h3 className="article-page__sources-title">

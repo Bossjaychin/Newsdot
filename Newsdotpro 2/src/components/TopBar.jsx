@@ -85,7 +85,7 @@ export default function TopBar() {
                         <Link to="/subscribe" className="btn btn--primary topbar__subscribe-btn">
                             Subscribe
                         </Link>
-                        <Link to="/signin" className="btn btn--ghost topbar__signin-btn">
+                        <Link to="/admin/login" className="btn btn--ghost topbar__signin-btn">
                             Sign In
                         </Link>
                         <button
@@ -133,7 +133,7 @@ export default function TopBar() {
                         ))}
                         <div className="topbar__mobile-actions">
                             <Link to="/subscribe" className="btn btn--primary" onClick={() => setMenuOpen(false)}>Subscribe</Link>
-                            <Link to="/signin" className="btn btn--ghost" onClick={() => setMenuOpen(false)}>Sign In</Link>
+                            <Link to="/admin/login" className="btn btn--ghost" onClick={() => setMenuOpen(false)}>Sign In</Link>
                         </div>
                     </nav>
                 )}

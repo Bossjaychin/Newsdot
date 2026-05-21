@@ -5,6 +5,7 @@ const cityDeskItems = [
     {
         id: 1,
         district: 'FCT Policy',
+        districtSlug: 'abuja',
         headline: 'FCTA Approves Free Bus Service for Civil Servants on 3 Key Routes',
         time: '2h ago',
         tag: 'Transport',
@@ -12,6 +13,7 @@ const cityDeskItems = [
     {
         id: 2,
         district: 'Security',
+        districtSlug: 'security',
         headline: 'Police Warn of Fake Checkpoint Officers Operating on Kubwa Expressway',
         time: '3h ago',
         tag: 'Safety',
@@ -19,6 +21,7 @@ const cityDeskItems = [
     {
         id: 3,
         district: 'Events',
+        districtSlug: 'events',
         headline: 'National Art Theatre Abuja Hosts Week-Long Cultural Festival Starting Friday',
         time: '4h ago',
         tag: 'Culture',
@@ -26,6 +29,7 @@ const cityDeskItems = [
     {
         id: 4,
         district: 'Infrastructure',
+        districtSlug: 'infrastructure',
         headline: 'AEPB Announces 72-Hour Water Supply Restoration in Gwarimpa, Lifecamp',
         time: '5h ago',
         tag: 'Utilities',
@@ -33,9 +37,18 @@ const cityDeskItems = [
     {
         id: 5,
         district: 'Transport',
+        districtSlug: 'transport',
         headline: 'BRT Pilot Programme to Launch on Berger–CBD Corridor Next Month',
         time: '6h ago',
         tag: 'Transport',
+    },
+    {
+        id: 6,
+        district: 'Economy',
+        districtSlug: 'business',
+        headline: 'FCT SME Fund Disburses ₦1.2bn to 340 Abuja Businesses This Quarter',
+        time: '7h ago',
+        tag: 'Business',
     },
 ];
 
@@ -49,7 +62,7 @@ export default function AbujaBreief() {
                     <div className="abuja-brief__title-block">
                         <span className="label abuja-brief__eyebrow">Daily Roundup</span>
                         <h2 className="headline-lg abuja-brief__title">Abuja Brief</h2>
-                        <p className="body-md abuja-brief__subtitle">
+                        <p className="abuja-brief__subtitle">
                             From the City Desk — FCT policy, transport, security and events, curated daily.
                         </p>
                     </div>
@@ -68,10 +81,10 @@ export default function AbujaBreief() {
                             </div>
                             <div className="abuja-brief__item-body">
                                 <div className="abuja-brief__item-meta">
-                                    <span className="chip chip--abuja">{item.district}</span>
+                                    <span className={`chip chip--${item.districtSlug}`}>{item.district}</span>
                                     <span className="card__time">{item.time}</span>
                                 </div>
-                                <Link to="#" className="abuja-brief__item-headline headline-sm">
+                                <Link to="#" className="abuja-brief__item-headline">
                                     {item.headline}
                                 </Link>
                             </div>

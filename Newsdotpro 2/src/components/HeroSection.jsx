@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom';
 import './HeroSection.css';
 
+const FALLBACK_IMG = 'https://images.unsplash.com/photo-1585829365295-ab7cd400c167?w=900&q=80';
+
 export default function HeroSection({ article }) {
     if (!article) return null;
     const chipClass = `chip chip--${article.tagSlug}`;
@@ -52,10 +54,11 @@ export default function HeroSection({ article }) {
                     {/* Image side */}
                     <Link to={`/article/${article.id}`} className="hero__image-wrap">
                         <img
-                            src={article.image}
+                            src={article.image || FALLBACK_IMG}
                             alt={article.title}
                             className="hero__image"
                             loading="eager"
+                            onError={e => { e.target.onerror = null; e.target.src = FALLBACK_IMG; }}
                         />
                         <div className="hero__image-overlay" />
                         <div className="hero__image-badge">

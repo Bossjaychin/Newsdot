@@ -2,44 +2,60 @@
    NEWSDoT — Global Design System
    =================================================== */
 
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800&family=Inter:wght@400;500;600;700&display=swap');
+
 :root {
-  /* Colors */
-  --color-bg:         #FAFAFA;
-  --color-surface:    #FFFFFF;
-  --color-border:     #E5E7EB;
-  --color-border-light: #F3F4F6;
-  --color-text:       #111827;
-  --color-text-secondary: #4B5563;
-  --color-muted:      #9CA3AF;
-  --color-accent:     #1B5E3B;
-  --color-accent-hover: #14472D;
-  --color-accent-light: #EBF5F0;
-  --color-accent-muted: #6EAB8A;
-  --color-charcoal:   #1C1C1C;
-  --color-dark-surface: #242424;
-  --color-dark-border: #333333;
+  /* ── Core Brand Colors (extracted from screenshots) ── */
+  --color-bg:             #F8F9FA;
+  --color-surface:        #FFFFFF;
+  --color-border:         #E2E8E4;
+  --color-border-light:   #EEF2EF;
+  --color-text:           #0D1F17;
+  --color-text-secondary: #3D5445;
+  --color-muted:          #8A9E93;
+
+  /* Accent — rich forest green */
+  --color-accent:         #1B6B3A;
+  --color-accent-hover:   #155530;
+  --color-accent-light:   #EAF4EE;
+  --color-accent-muted:   #5FA87C;
+  --color-accent-bright:  #22C55E;
+
+  /* Dark surfaces (newsletter + footer) */
+  --color-charcoal:       #0C1C12;
+  --color-dark-surface:   #111A14;
+  --color-dark-mid:       #162019;
+  --color-dark-border:    #243320;
 
   /* Tag Chip Colors */
-  --chip-abuja:   #EEF2FF;
-  --chip-abuja-text: #3730A3;
-  --chip-nigeria: #FEF3C7;
-  --chip-nigeria-text: #92400E;
-  --chip-africa:  #FDF2F8;
-  --chip-africa-text: #9D174D;
-  --chip-global:  #F0FDF4;
-  --chip-global-text: #166534;
-  --chip-politics: #FEF2F2;
-  --chip-politics-text: #991B1B;
-  --chip-tech:    #EFF6FF;
-  --chip-tech-text: #1E40AF;
-  --chip-business: #FFFBEB;
-  --chip-business-text: #92400E;
-  --chip-society: #F5F3FF;
-  --chip-society-text: #5B21B6;
-  --chip-opinion: #FFF7ED;
-  --chip-opinion-text: #C2410C;
-  --chip-investigations: #FDF4FF;
+  --chip-abuja:            #E8F5EC;
+  --chip-abuja-text:       #1B6B3A;
+  --chip-nigeria:          #FEF3C7;
+  --chip-nigeria-text:     #92400E;
+  --chip-africa:           #FDF2F8;
+  --chip-africa-text:      #9D174D;
+  --chip-global:           #F0FDF4;
+  --chip-global-text:      #166534;
+  --chip-politics:         #FEF2F2;
+  --chip-politics-text:    #991B1B;
+  --chip-tech:             #EFF6FF;
+  --chip-tech-text:        #1E40AF;
+  --chip-business:         #FFFBEB;
+  --chip-business-text:    #92400E;
+  --chip-society:          #F5F3FF;
+  --chip-society-text:     #5B21B6;
+  --chip-opinion:          #FFF7ED;
+  --chip-opinion-text:     #C2410C;
+  --chip-investigations:   #FDF4FF;
   --chip-investigations-text: #7E22CE;
+  --chip-security:         #FFF1F2;
+  --chip-security-text:    #BE123C;
+  --chip-infrastructure:   #F0FDF4;
+  --chip-infrastructure-text: #15803D;
+  --chip-events:           #F5F3FF;
+  --chip-events-text:      #6D28D9;
+  --chip-transport:        #EFF6FF;
+  --chip-transport-text:   #1D4ED8;
 
   /* Fonts */
   --font-serif:  'Playfair Display', Georgia, serif;
@@ -59,16 +75,17 @@
   --space-20: 80px;
 
   /* Radius */
-  --radius-sm: 4px;
-  --radius-md: 8px;
-  --radius-lg: 12px;
-  --radius-xl: 16px;
+  --radius-sm:   4px;
+  --radius-md:   8px;
+  --radius-lg:   12px;
+  --radius-xl:   16px;
+  --radius-2xl:  20px;
   --radius-pill: 999px;
 
   /* Shadows */
-  --shadow-sm: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
-  --shadow-md: 0 4px 12px rgba(0,0,0,0.08), 0 2px 4px rgba(0,0,0,0.04);
-  --shadow-lg: 0 10px 30px rgba(0,0,0,0.10), 0 4px 8px rgba(0,0,0,0.05);
+  --shadow-sm: 0 1px 4px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+  --shadow-md: 0 4px 16px rgba(0,0,0,0.08), 0 2px 6px rgba(0,0,0,0.04);
+  --shadow-lg: 0 12px 32px rgba(0,0,0,0.10), 0 4px 10px rgba(0,0,0,0.05);
 
   /* Transitions */
   --transition-fast: 150ms ease;
@@ -129,13 +146,13 @@ ul, ol { list-style: none; }
 .body-lg  { font-size: 1.05rem; line-height: 1.7; }
 .body-md  { font-size: 0.95rem; line-height: 1.65; }
 .body-sm  { font-size: 0.85rem; line-height: 1.55; }
-.label    { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; }
+.label    { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.09em; text-transform: uppercase; }
 
 /* ===================================================
    Layout
    =================================================== */
 .container {
-  max-width: 1280px;
+  max-width: 1200px;
   margin: 0 auto;
   padding: 0 var(--space-6);
 }
@@ -144,7 +161,7 @@ ul, ol { list-style: none; }
   margin: 0 auto;
   padding: 0 var(--space-6);
 }
-.section { padding: var(--space-12) 0; }
+.section     { padding: var(--space-12) 0; }
 .section--lg { padding: var(--space-20) 0; }
 
 /* ===================================================
@@ -160,15 +177,19 @@ ul, ol { list-style: none; }
   font-weight: 600;
   transition: all var(--transition-fast);
   white-space: nowrap;
+  letter-spacing: 0.01em;
 }
 .btn--primary {
-  background: var(--color-accent);
+  background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-hover) 100%);
   color: #fff;
+  box-shadow: 0 2px 8px rgba(27,107,58,0.2);
 }
 .btn--primary:hover {
-  background: var(--color-accent-hover);
-  transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(27,94,59,0.3);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(27,107,58,0.35);
+}
+.btn--primary:active {
+  transform: translateY(0) scale(0.98);
 }
 .btn--ghost {
   background: transparent;
@@ -183,11 +204,11 @@ ul, ol { list-style: none; }
 .btn--ghost-white {
   background: transparent;
   color: #fff;
-  border: 1.5px solid rgba(255,255,255,0.4);
+  border: 1.5px solid rgba(255,255,255,0.3);
 }
 .btn--ghost-white:hover {
   border-color: #fff;
-  background: rgba(255,255,255,0.1);
+  background: rgba(255,255,255,0.08);
 }
 
 /* ===================================================
@@ -198,22 +219,26 @@ ul, ol { list-style: none; }
   align-items: center;
   padding: 3px 10px;
   border-radius: var(--radius-pill);
-  font-size: 0.72rem;
-  font-weight: 600;
-  letter-spacing: 0.04em;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
 }
-.chip--abuja   { background: var(--chip-abuja);   color: var(--chip-abuja-text); }
-.chip--nigeria { background: var(--chip-nigeria); color: var(--chip-nigeria-text); }
-.chip--africa  { background: var(--chip-africa);  color: var(--chip-africa-text); }
-.chip--global  { background: var(--chip-global);  color: var(--chip-global-text); }
-.chip--politics { background: var(--chip-politics); color: var(--chip-politics-text); }
-.chip--tech    { background: var(--chip-tech);    color: var(--chip-tech-text); }
-.chip--business { background: var(--chip-business); color: var(--chip-business-text); }
-.chip--society { background: var(--chip-society); color: var(--chip-society-text); }
-.chip--opinion { background: var(--chip-opinion); color: var(--chip-opinion-text); }
+.chip--abuja          { background: var(--chip-abuja);          color: var(--chip-abuja-text); }
+.chip--nigeria        { background: var(--chip-nigeria);        color: var(--chip-nigeria-text); }
+.chip--africa         { background: var(--chip-africa);         color: var(--chip-africa-text); }
+.chip--global         { background: var(--chip-global);         color: var(--chip-global-text); }
+.chip--politics       { background: var(--chip-politics);       color: var(--chip-politics-text); }
+.chip--tech           { background: var(--chip-tech);           color: var(--chip-tech-text); }
+.chip--business       { background: var(--chip-business);       color: var(--chip-business-text); }
+.chip--society        { background: var(--chip-society);        color: var(--chip-society-text); }
+.chip--opinion        { background: var(--chip-opinion);        color: var(--chip-opinion-text); }
 .chip--investigations { background: var(--chip-investigations); color: var(--chip-investigations-text); }
-.chip--news    { background: var(--color-accent-light); color: var(--color-accent); }
+.chip--news           { background: var(--color-accent-light);  color: var(--color-accent); }
+.chip--security       { background: var(--chip-security);       color: var(--chip-security-text); }
+.chip--infrastructure { background: var(--chip-infrastructure); color: var(--chip-infrastructure-text); }
+.chip--events         { background: var(--chip-events);         color: var(--chip-events-text); }
+.chip--transport      { background: var(--chip-transport);      color: var(--chip-transport-text); }
 
 /* ===================================================
    Verified Badge
@@ -221,19 +246,19 @@ ul, ol { list-style: none; }
 .verified-badge {
   display: inline-flex;
   align-items: center;
-  gap: 5px;
-  padding: 4px 10px;
+  gap: 4px;
+  padding: 3px 9px;
   background: var(--color-accent-light);
-  border: 1px solid rgba(27,94,59,0.2);
+  border: 1px solid rgba(27,107,58,0.2);
   border-radius: var(--radius-pill);
-  font-size: 0.72rem;
-  font-weight: 600;
+  font-size: 0.7rem;
+  font-weight: 700;
   color: var(--color-accent);
   letter-spacing: 0.03em;
 }
 .verified-badge::before {
   content: '✓';
-  font-weight: 700;
+  font-weight: 800;
 }
 
 /* ===================================================
@@ -247,9 +272,9 @@ ul, ol { list-style: none; }
   transition: transform var(--transition-base), box-shadow var(--transition-base), border-color var(--transition-base);
 }
 .card:hover {
-  transform: translateY(-3px);
-  box-shadow: var(--shadow-lg);
-  border-color: rgba(27,94,59,0.15);
+  transform: translateY(-5px);
+  box-shadow: 0 16px 32px rgba(27,107,58,0.12), 0 4px 10px rgba(0,0,0,0.04);
+  border-color: rgba(27,107,58,0.25);
 }
 .card__image-wrap {
   position: relative;
@@ -260,10 +285,15 @@ ul, ol { list-style: none; }
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.5s ease;
+  transition: transform 0.55s ease;
 }
 .card:hover .card__image-wrap img {
-  transform: scale(1.04);
+  transform: scale(1.05);
+}
+.card__image-tag {
+  position: absolute;
+  top: var(--space-3);
+  left: var(--space-3);
 }
 .card__body { padding: var(--space-5); }
 .card__meta {
@@ -274,9 +304,16 @@ ul, ol { list-style: none; }
   flex-wrap: wrap;
 }
 .card__time {
-  font-size: 0.75rem;
+  font-size: 0.73rem;
   color: var(--color-muted);
   font-weight: 500;
+}
+.card__headline {
+  margin-bottom: var(--space-2);
+  transition: color var(--transition-fast);
+}
+.card:hover .card__headline {
+  color: var(--color-accent);
 }
 .card__excerpt {
   font-size: 0.875rem;
@@ -288,15 +325,25 @@ ul, ol { list-style: none; }
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
+.card__footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: var(--space-3);
+  font-size: 0.76rem;
+  color: var(--color-muted);
+}
+.card__author-name { font-weight: 600; color: var(--color-text-secondary); }
 .card__read-more {
   display: inline-flex;
   align-items: center;
   gap: 4px;
   margin-top: var(--space-4);
-  font-size: 0.8rem;
-  font-weight: 600;
+  font-size: 0.79rem;
+  font-weight: 700;
   color: var(--color-accent);
   transition: gap var(--transition-fast);
+  letter-spacing: 0.01em;
 }
 .card:hover .card__read-more { gap: 8px; }
 
@@ -320,14 +367,15 @@ ul, ol { list-style: none; }
 }
 .section-header__title {
   font-family: var(--font-serif);
-  font-size: 1.7rem;
+  font-size: 1.75rem;
   font-weight: 700;
+  color: var(--color-text);
   position: relative;
 }
 .section-header__title::after {
   content: '';
   display: block;
-  width: 40px;
+  width: 36px;
   height: 3px;
   background: var(--color-accent);
   margin-top: var(--space-2);
@@ -335,16 +383,17 @@ ul, ol { list-style: none; }
 }
 .section-header__link {
   font-size: 0.8rem;
-  font-weight: 600;
+  font-weight: 700;
   color: var(--color-accent);
   margin-left: auto;
   display: flex;
   align-items: center;
   gap: 4px;
-  padding: 4px 12px;
-  border: 1px solid rgba(27,94,59,0.3);
+  padding: 5px 14px;
+  border: 1.5px solid rgba(27,107,58,0.3);
   border-radius: var(--radius-pill);
   transition: all var(--transition-fast);
+  letter-spacing: 0.01em;
 }
 .section-header__link:hover {
   background: var(--color-accent-light);
@@ -354,7 +403,7 @@ ul, ol { list-style: none; }
 /* ===================================================
    Scrollbar
    =================================================== */
-::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar { width: 5px; }
 ::-webkit-scrollbar-track { background: transparent; }
 ::-webkit-scrollbar-thumb { background: var(--color-border); border-radius: 3px; }
 ::-webkit-scrollbar-thumb:hover { background: var(--color-muted); }
@@ -385,7 +434,12 @@ ul, ol { list-style: none; }
    Animations
    =================================================== */
 @keyframes fadeInUp {
-  from { opacity: 0; transform: translateY(16px); }
+  from { opacity: 0; transform: translateY(18px); }
   to   { opacity: 1; transform: translateY(0); }
 }
 .animate-in { animation: fadeInUp 0.5s ease both; }
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}

@@ -1,17 +1,28 @@
+import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import TopBar from '../components/TopBar';
 import Footer from '../components/Footer';
 import ArticleCard from '../components/ArticleCard';
 import NewsletterCTA from '../components/NewsletterCTA';
-import { articles } from '../data/articles';
+import { getArticlesByCategory } from '../data/articles';
 import { categories } from '../data/categories';
 import './CategoryPage.css';
 
 export default function CategoryPage() {
     const { slug } = useParams();
     const categoryInfo = categories.find(c => c.slug === slug);
-    const filtered = articles.filter(a => a.category === slug);
     const label = categoryInfo?.label || slug?.charAt(0).toUpperCase() + slug?.slice(1);
+
+    const [filtered, setFiltered] = useState([]);
+    const [loading, setLoading]   = useState(true);
+
+    useEffect(() => {
+        setLoading(true);
+        getArticlesByCategory(slug)
+            .then(data => setFiltered(data))
+            .catch(console.error)
+            .finally(() => setLoading(false));
+    }, [slug]);
 
     return (
         <>
@@ -33,7 +44,11 @@ export default function CategoryPage() {
 
                 <section className="section">
                     <div className="container">
-                        {filtered.length === 0 ? (
+                        {loading ? (
+                            <div style={{ padding: '4rem', textAlign: 'center', color: 'var(--color-text-secondary)' }}>
+                                Loading stories…
+                            </div>
+                        ) : filtered.length === 0 ? (
                             <div className="category-empty">
                                 <p className="headline-md">No stories yet in {label}.</p>
                                 <p className="body-md" style={{ marginTop: '12px', color: 'var(--color-text-secondary)' }}>
@@ -43,11 +58,9 @@ export default function CategoryPage() {
                             </div>
                         ) : (
                             <>
-                                {/* Featured top story */}
                                 <div className="category-page__featured">
                                     <ArticleCard article={filtered[0]} size="lg" />
                                 </div>
-                                {/* Grid */}
                                 {filtered.length > 1 && (
                                     <div className="grid-3 category-page__grid">
                                         {filtered.slice(1).map(a => (

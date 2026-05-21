@@ -1,4 +1,6 @@
 import { createContext, useContext, useState, useEffect } from 'react';
+import { signInWithEmailAndPassword, signOut, onAuthStateChanged } from 'firebase/auth';
+import { auth } from '../firebase';
 
 const AuthContext = createContext(null);
 
@@ -7,28 +9,42 @@ export const AuthProvider = ({ children }) => {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        // Mock check for existing session in localStorage
-        const storedUser = localStorage.getItem('newsdot_admin_user');
-        if (storedUser) {
-            setUser(JSON.parse(storedUser));
-        }
-        setLoading(false);
+        const unsubscribe = onAuthStateChanged(auth, (firebaseUser) => {
+            if (firebaseUser) {
+                // If the user logs in via Firebase Auth, set our local user state
+                setUser({
+                    uid: firebaseUser.uid,
+                    email: firebaseUser.email,
+                    username: firebaseUser.email,
+                    name: firebaseUser.displayName || 'NEWSDoT Admin',
+                    role: 'admin'
+                });
+            } else {
+                setUser(null);
+            }
+            setLoading(false);
+        });
+
+        // Cleanup subscription on unmount
+        return () => unsubscribe();
     }, []);
 
-    const login = (username, password) => {
-        // Mock login: any username with password 'admin123' works for this demo
-        if (password === 'admin123' && username.trim() !== '') {
-            const userData = { username, role: 'admin' };
-            setUser(userData);
-            localStorage.setItem('newsdot_admin_user', JSON.stringify(userData));
-            return true;
+    const login = async (email, password) => {
+        try {
+            await signInWithEmailAndPassword(auth, email, password);
+            return { success: true };
+        } catch (error) {
+            console.error("Login failed:", error.message);
+            return { success: false, error: error.message };
         }
-        return false;
     };
 
-    const logout = () => {
-        setUser(null);
-        localStorage.removeItem('newsdot_admin_user');
+    const logout = async () => {
+        try {
+            await signOut(auth);
+        } catch (error) {
+            console.error("Logout failed:", error.message);
+        }
     };
 
     return (
