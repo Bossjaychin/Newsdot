@@ -30,7 +30,7 @@ const SEED_ARTICLES = [
     tag: "Nigeria",
     tagSlug: "nigeria",
     image: "https://images.unsplash.com/photo-1529107386315-e1a2ed48a620?w=900&q=80",
-    author: "Chidiebere Okonkwo",
+    author: "Chidiebere Oruh",
     readTime: "5 min read",
     date: "Feb 28, 2026",
     isHero: true,

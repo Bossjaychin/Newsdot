@@ -16,7 +16,7 @@ export const AuthProvider = ({ children }) => {
                     uid: firebaseUser.uid,
                     email: firebaseUser.email,
                     username: firebaseUser.email,
-                    name: firebaseUser.displayName || 'Chidiebere Okonkwo',
+                    name: firebaseUser.displayName || 'Chidiebere Oruh',
                     role: 'admin'
                 });
             } else {
