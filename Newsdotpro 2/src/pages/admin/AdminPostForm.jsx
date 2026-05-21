@@ -10,6 +10,17 @@ const DEFAULT_IMAGE = 'https://images.unsplash.com/photo-1585829365295-ab7cd400c
 const CATEGORIES = ['news','politics','business','tech','society','investigations','opinion'];
 const TAGS = ['Abuja','Nigeria','Africa','Global','Politics','Business','Tech'];
 
+// ─── Timeout Helper ───────────────────────────────────────────────────────────
+// Races a promise against a timeout so Firebase Storage can't hang forever.
+function withTimeout(promise, ms, label = 'Operation') {
+    return Promise.race([
+        promise,
+        new Promise((_, reject) =>
+            setTimeout(() => reject(new Error(`${label} timed out after ${ms / 1000}s`)), ms)
+        ),
+    ]);
+}
+
 // ─── Image Compression Helper ──────────────────────────────────────────────────
 // Resizes to max 1200 px wide and compresses to JPEG at 70% quality.
 // Output is always a compact data URL (≈80–150 KB) that Firestore can store
@@ -123,13 +134,21 @@ export default function AdminPostForm() {
             let finalImageUrl = imageUrl.trim() || DEFAULT_IMAGE;
 
             if (selectedFile) {
-                // Step 1 — try Firebase Storage (fast CDN delivery)
+                // Step 1 — try Firebase Storage (fast CDN delivery), with 15s timeout
                 let usedStorage = false;
                 try {
                     setUploadProgress('Uploading image…');
                     const storageRef = ref(storage, `article-images/${Date.now()}_${selectedFile.name}`);
-                    const snapshot   = await uploadBytes(storageRef, selectedFile);
-                    finalImageUrl    = await getDownloadURL(snapshot.ref);
+                    const snapshot   = await withTimeout(
+                        uploadBytes(storageRef, selectedFile),
+                        15000,
+                        'Firebase Storage upload'
+                    );
+                    finalImageUrl    = await withTimeout(
+                        getDownloadURL(snapshot.ref),
+                        10000,
+                        'Firebase Storage getDownloadURL'
+                    );
                     usedStorage      = true;
                     console.log('[NEWSDoT] Image uploaded to Firebase Storage:', finalImageUrl);
                 } catch (storageErr) {
