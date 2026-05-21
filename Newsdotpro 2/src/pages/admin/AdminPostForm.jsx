@@ -181,7 +181,7 @@ export default function AdminPostForm() {
                 tagSlug:  tag.toLowerCase(),
                 excerpt:  excerpt.trim(),
                 body:     body.trim(),
-                author:   user?.username?.split('@')[0] || user?.name || 'Admin',
+                author:   user?.name || user?.username?.split('@')[0] || 'Admin',
                 image:    finalImageUrl,
                 readTime: `${Math.max(1, Math.ceil(body.trim().split(/\s+/).length / 200))} min read`,
                 status,
